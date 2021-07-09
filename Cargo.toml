@@ -10,17 +10,27 @@ edition = "2018"
 crate-type = ["cdylib", "rlib"]
 
 [dependencies]
-eframe = "0.13.0" # Gives us egui, epi and web+native backends
-
+#eframe = "0.13.0" # Gives us egui, epi and web+native backends
+#egui_pocketbook="0.1.0"
+epi = "*"
+egui = "*"
 serde = { version = "1", features = ["derive"], optional = true }
+log-panics = "*"
+inkview-sys = "0.1.1"
+backtrace = "*"
+egui_pocketbook = { path = "/Users/andrey/CLionProjects/egui_pocketbook" }
+
+[profile.release]
+panic = 'abort'
+
 
 [features]
 default = []
-http = ["eframe/http"] # Enable if you want to do http requests
-persistence = ["eframe/persistence", "serde"] # Enable if you want to persist app state on shutdown
+#http = ["eframe/http"] # Enable if you want to do http requests
+#persistence = ["eframe/persistence", "serde"] # Enable if you want to persist app state on shutdown
 
-[profile.release]
-opt-level = 2 # fast and small wasm
+#[profile.release]
+#opt-level = 2 # fast and small wasm
 
 [patch.crates-io]
 
@@ -29,3 +39,4 @@ opt-level = 2 # fast and small wasm
 
 # If you fork https://github.com/emilk/egui you can test with:
 # eframe = { path = "../egui/eframe" }
+

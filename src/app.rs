@@ -1,4 +1,6 @@
-use eframe::{egui, epi};
+use egui;
+use epi;
+use egui_pocketbook::handle_component_update;
 
 /// We derive Deserialize/Serialize so we can persist app state on shutdown.
 #[cfg_attr(feature = "persistence", derive(serde::Deserialize, serde::Serialize))]
@@ -68,7 +70,7 @@ impl epi::App for TemplateApp {
                 ui.text_edit_singleline(label);
             });
 
-            ui.add(egui::Slider::new(value, 0.0..=10.0).text("value"));
+            handle_component_update(ui.add(egui::Slider::new(value, 0.0..=10.0).text("value")));
             if ui.button("Increment").clicked() {
                 *value += 1.0;
             }
